@@ -73,12 +73,12 @@ export default function Home() {
         </div>
         <div className="row mt-2 mb-2 text-center">
           <div className="col-md-12">
-            <a><a className="link-primary" href="./create-account-request">Create Account</a></a>
+            <a className="link-primary" href="./create-account-request">Create Account</a>
           </div>
         </div>
         <div className="row mb-2 text-center">
           <div className="col-md-12">
-            <a><a className="link-primary" href="./reset-password-request">Reset Password</a></a>
+            <a className="link-primary" href="./reset-password-request">Reset Password</a>
           </div>
         </div>
         <footer className="fixed-bottom pb-5 text-center">
