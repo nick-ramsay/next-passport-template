@@ -11,15 +11,15 @@ export default function CreateAccount() {
   const [loading, setLoading] = useState(false);
 
   const handleLogout = async () => {
-        try {
-            setLoading(true)
-            await API.logout();
-            window.location.href = '/login';
-        } catch (error) {
-            setLoading(false)
-            console.error("Logout failed:", error);
-        }
-    };
+    try {
+      setLoading(true)
+      await API.logout();
+      window.location.href = '/login';
+    } catch (error) {
+      setLoading(false)
+      console.error("Logout failed:", error);
+    }
+  };
 
   const fetchUser = () => {
     API.getCurrentUser(window.location.pathname).then(res => { setUser(user => res.user); setLoading(loading => false); }).catch(err => {
@@ -45,18 +45,22 @@ export default function CreateAccount() {
     );
   } else {
     return (
-      <div className="container">
+      <div className="d-flex flex-column min-vh-100">
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
             <a className="navbar-brand" href="#">Next Mongo Template</a>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+              aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
+
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
               <ul className="navbar-nav">
                 <li className="nav-item dropdown">
-                  <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    {user.firstname + " " + user.lastname}
+                  <a className="nav-link dropdown-toggle" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    {user.firstname} {user.lastname}
                   </a>
                   <ul className="dropdown-menu align-content-end">
                     <li><a className="dropdown-item" href="#" onClick={handleLogout}>Logout</a></li>
@@ -66,10 +70,10 @@ export default function CreateAccount() {
             </div>
           </div>
         </nav>
-        <div className="col-md-12">
-          <div>
-            <h1 className="text-2xl font-bold mb-10">Welcome, {user.firstname + " " + user.lastname}</h1>
-          </div>
+        <div className="container-fluid d-flex flex-grow-1 justify-content-center align-items-center">
+          <h1 className="text-center fw-bold">
+            Welcome, {user.firstname} {user.lastname}
+          </h1>
         </div>
       </div>
     );
