@@ -6,12 +6,11 @@ import Image from 'next/image'
 import { sha256 } from 'js-sha256';
 import API from '../utils/API';
 import { checkAuthStatus } from '../shared-functions/shared-functions';
-import { useBootstrapTheme } from "../../components/useBootstrapTheme";
 import GithubLogo from "../images/GitHub_Lockup_Light.png"
 import GitHubLogoLight from "../images/GitHub_Lockup_Dark.png";
 
 export default function Home() {
-  const theme = useBootstrapTheme();
+
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -84,7 +83,7 @@ export default function Home() {
         <footer className="fixed-bottom pb-5 text-center">
           <a target="_blank" href="http://www.github.com/nick-ramsay/nextjs-mongo-passport-template">
             <Image
-              src={theme === "light" ? GitHubLogoLight : GithubLogo}
+              src={GithubLogo}
               width={80}
               alt="GitHub Logo"
             />

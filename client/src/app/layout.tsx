@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import ThemeWatcher from "../components/ThemeWatcher";
 import 'bootstrap/dist/css/bootstrap.css';
 import BootstrapClient from '@/components/BootstrapClient.js';
 
@@ -15,10 +14,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-bs-theme="dark">
       <body>
-        <ThemeWatcher />
-          {children}
+        {children}
         <BootstrapClient />
       </body>
     </html>
