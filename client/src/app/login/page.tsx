@@ -51,12 +51,12 @@ export default function Home() {
       <div className="container p-4">
         <div className="row">
           <div className="col-md-12">
-            <h1 className="text-md font-bold mb-5 text-center">Next.js Mongo Passport Template</h1>
+            <h2 className="text-md font-bold mb-5 text-center">Next.js Mongo Passport Template</h2>
           </div>
         </div>
         <div className="row">
           <div className="col-md-12">
-            <form>
+            <form className="p-4 mx-auto">
               <div className="mb-3">
                 <label htmlFor="loginEmail" className="form-label">Email address</label>
                 <input type="email" className="form-control" id="loginEmail" aria-describedby="emailHelp" onChange={(e) => setEmail(e.target.value)} />

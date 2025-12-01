@@ -1,0 +1,20 @@
+form {
+  border-radius: 5px;
+}
+
+[data-bs-theme="dark"] {
+  body {
+    background-color: #121212;
+  }
+  form {
+    background: #1e1e1e;
+  }
+}
+
+/* Custom styles for light mode */
+[data-bs-theme="light"] {
+  /* Example: Change a custom element's background in light mode */
+  form {
+    background-color: darkblue;
+  }
+}

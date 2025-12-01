@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+ import './globals.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import BootstrapClient from '@/components/BootstrapClient.js';
 
