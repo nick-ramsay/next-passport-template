@@ -15,6 +15,6 @@ form {
 [data-bs-theme="light"] {
   /* Example: Change a custom element's background in light mode */
   form {
-    background-color: darkblue;
+    background-color: #f8f9fa
   }
 }

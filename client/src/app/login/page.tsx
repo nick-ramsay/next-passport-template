@@ -8,6 +8,7 @@ import API from '../utils/API';
 import { checkAuthStatus } from '../shared-functions/shared-functions';
 import GithubLogo from "../images/GitHub_Lockup_Light.png"
 import GitHubLogoLight from "../images/GitHub_Lockup_Dark.png";
+import ThemeTracker from '../../components/ThemeTracker';
 
 export default function Home() {
 
@@ -15,9 +16,12 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [theme, setTheme] = useState("dark");
 
 
   useEffect(() => {
+    setTheme(ThemeTracker() ?? "dark");
+    console.log(theme);
     checkAuthStatus(window.location.pathname).then(res => {
       if (res.user !== null) {
         window.location.href = '/';
@@ -83,7 +87,7 @@ export default function Home() {
         <footer className="fixed-bottom pb-5 text-center">
           <a target="_blank" href="http://www.github.com/nick-ramsay/nextjs-mongo-passport-template">
             <Image
-              src={GithubLogo}
+              src={theme == "dark" ? GithubLogo: GitHubLogoLight}
               width={80}
               alt="GitHub Logo"
             />
