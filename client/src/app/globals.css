@@ -6,8 +6,13 @@ form {
   body {
     background-color: #121212;
   }
+
   form {
-    background: #1e1e1e;
+    background: #2b3035;
+  }
+
+  .form-error-message {
+    color: #ff6961;
   }
 }
 
@@ -15,6 +20,12 @@ form {
 [data-bs-theme="light"] {
   /* Example: Change a custom element's background in light mode */
   form {
-    background-color: #f8f9fa
+    background-color: #f8f9fa;
+  }
+
+  .form-error-message {
+    color: red;
   }
 }
+
+
