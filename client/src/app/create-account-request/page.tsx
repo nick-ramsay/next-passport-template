@@ -1,11 +1,13 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import API from "../utils/API";
 import { RingLoader } from 'react-spinners';
 import Image from 'next/image';
 import ThemeTracker from '../../components/ThemeTracker';
 import GithubLogo from "../images/GitHub_Lockup_Light.png"
+import AppLogo from "../images/AppLogo.png";
 import GitHubLogoLight from "../images/GitHub_Lockup_Dark.png";
 import { set } from 'mongoose';
 
@@ -27,7 +29,8 @@ export default function CreateAccount() {
           } else {
             API.setEmailVerificationToken(email)
               .then(res => {
-                window.location.href = "./create-account"
+                localStorage.setItem("email", email);
+                window.location.href = "./create-account";
               })
           }
         }
@@ -47,20 +50,20 @@ export default function CreateAccount() {
     <div className="d-flex flex-column min-vh-100">
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">Next.js Mongo Passport Template</a>
+          <Image className='text-center' src={AppLogo} alt="AppLogo" width={90} />
         </div>
       </nav>
       <div className="container">
         <div className="row justify-content-center mt-5">
           <div className="col-md-12">
             <form className="p-4 mx-auto" onSubmit={(event) => { setErrorMessage(""); submitRequest(email, event) }}>
-              <h6 className="text-center">Create an Account</h6>
+              <h6 className="text-center">Request an Account</h6>
               <div className="mb-3">
                 <label htmlFor="createAccountRequestEmailInput" className="form-label">Email address</label>
                 <input type="email" className="form-control" id="createAccountRequestEmailInput" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} />
               </div>
               <div className='mb-3 text-center'>
-                <button className="btn btn-primary" onClick={() => setErrorMessage("")} type='submit'>Request an Account</button>
+                <button className="btn btn-primary" onClick={() => setErrorMessage("")} type='submit'>Request Account</button>
               </div>
               <div className="text-center">
                 <div className="form-text form-error-message mt-6 text-center">{errorMessage}</div>
@@ -70,7 +73,7 @@ export default function CreateAccount() {
         </div>
         <footer className="row">
           <div className="col-md-12 text-center my-4">
-            <a target="_blank" href="http://www.github.com/nick-ramsay/nextjs-mongo-passport-template">
+            <a target="_blank" href="http://www.github.com/nick-ramsay/next-passport-template">
               <Image
                 className="hidden dark:block"
                 src={theme == "dark" ? GithubLogo : GitHubLogoLight}

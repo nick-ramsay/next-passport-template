@@ -7,6 +7,7 @@ import { sha256 } from 'js-sha256';
 import API from '../utils/API';
 import { checkAuthStatus } from '../shared-functions/shared-functions';
 import GithubLogo from "../images/GitHub_Lockup_Light.png"
+import AppLogo from "../images/AppLogo.png";
 import GitHubLogoLight from "../images/GitHub_Lockup_Dark.png";
 import ThemeTracker from '../../components/ThemeTracker';
 
@@ -54,8 +55,8 @@ export default function Home() {
     return (
       <div className="container p-4">
         <div className="row">
-          <div className="col-md-12">
-            <h2 className="text-md font-bold mb-5 text-center">Next.js Mongo Passport Template</h2>
+          <div className="col-md-12 text-center mb-5 mt-5">
+            <Image className='text-center' src={AppLogo} alt="AppLogo" width={300} />
           </div>
         </div>
         <div className="row">
