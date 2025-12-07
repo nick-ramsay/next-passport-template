@@ -1,10 +1,10 @@
-'use client'
+"use client"
 
-import React, { useState, useEffect } from 'react';
-import Navbar from './components/navbar/Navbar';
-import { RingLoader } from 'react-spinners';
-import API from './utils/API';
-import { checkAuthStatus } from './shared-functions/shared-functions';
+import React, { useState, useEffect } from "react";
+import Navbar from "./components/navbar/Navbar";
+import { RingLoader } from "react-spinners";
+import API from "./utils/API";
+import { checkAuthStatus } from "./shared-functions/shared-functions";
 
 export default function CreateAccount() {
   const [user, setUser] = useState({ firstname: "", lastname: "" });
@@ -14,7 +14,7 @@ export default function CreateAccount() {
     try {
       setLoading(true)
       await API.logout();
-      window.location.href = '/login';
+      window.location.href = "/login";
     } catch (error) {
       setLoading(false)
       console.error("Logout failed:", error);
@@ -25,7 +25,7 @@ export default function CreateAccount() {
     API.getCurrentUser(window.location.pathname).then(res => { setUser(user => res.user); setLoading(loading => false); }).catch(err => {
       console.error("Error fetching user:", err.status);
       if (err.status === 401 || err.status === undefined) {
-        window.location.href = '/login';
+        window.location.href = "/login";
       };
     });
 
@@ -48,7 +48,7 @@ export default function CreateAccount() {
       <div className="d-flex flex-column min-vh-100">
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
-            <a className="navbar-brand" href="#">Next Mongo Template</a>
+            <a className="navbar-brand" href="#">Next.js Mongo Template</a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
               data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
               aria-expanded="false" aria-label="Toggle navigation">
