@@ -9,7 +9,6 @@ import ThemeTracker from '../../components/ThemeTracker';
 import GithubLogo from "../images/GitHub_Lockup_Light.png"
 import AppLogo from "../images/AppLogo.png";
 import GitHubLogoLight from "../images/GitHub_Lockup_Dark.png";
-import { set } from 'mongoose';
 
 
 export default function CreateAccount() {
@@ -21,7 +20,7 @@ export default function CreateAccount() {
 
   const submitRequest = (email: string, event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (email !== null && email.includes("@") && email.includes(".")) {
+    if (email !== "" && email.includes("@") && email.includes(".")) {
       API.checkExistingAccountEmails(email)
         .then(res => {
           if (res !== "" && res !== undefined) {
@@ -48,15 +47,15 @@ export default function CreateAccount() {
 
   return (
     <div className="d-flex flex-column min-vh-100">
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar bg-body-tertiary">
         <div className="container-fluid">
-          <Image className='text-center' src={AppLogo} alt="AppLogo" width={90} />
+          <a className="navbar-brand" href="/">Next.js Passport Template</a>
         </div>
       </nav>
       <div className="container">
-        <div className="row justify-content-center mt-5">
+        <div className="row justify-content-center mt-2">
           <div className="col-md-12">
-            <form className="p-4 mx-auto" onSubmit={(event) => { setErrorMessage(""); submitRequest(email, event) }}>
+            <form className="p-4 mx-auto mt-5" onSubmit={(event) => { setErrorMessage(""); submitRequest(email, event) }}>
               <h6 className="text-center">Request an Account</h6>
               <div className="mb-3">
                 <label htmlFor="createAccountRequestEmailInput" className="form-label">Email address</label>

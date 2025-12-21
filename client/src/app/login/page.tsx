@@ -56,7 +56,7 @@ export default function Home() {
       <div className="container p-4">
         <div className="row">
           <div className="col-md-12 text-center mb-5 mt-5">
-            <Image className='text-center' src={AppLogo} alt="AppLogo" width={300} />
+            <h1 className="text-center">Next.js Passport Template</h1>
           </div>
         </div>
         <div className="row">
