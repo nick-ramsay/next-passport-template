@@ -1,6 +1,10 @@
 import axios from "axios";
 
-const apiURL = process.env.NODE_ENV === 'production' ? 'https://api.next-passport-template.com' : '//localhost:3001'
+// In production, API is on the same domain, so use relative URL
+// In development, API runs on port 3001
+const apiURL = process.env.NODE_ENV === 'production' 
+  ? (process.env.NEXT_PUBLIC_API_URL || '')  // Empty string means same origin
+  : '//localhost:3001'
 
 const api = axios.create({
     baseURL: apiURL,
