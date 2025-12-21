@@ -130,24 +130,45 @@ module.exports = {
     },
     setEmailVerficationToken: function (req, res) {
         console.log("Called check set e-mail verification token controller...");
+        console.log("Request body:", req.body);
         let email = req.body.email;
+        
+        if (!email) {
+            return res.status(422).json({ message: 'Email is required' });
+        }
+        
         let emailVerificationToken = Math.floor((Math.random() * 999999) + 100000).toString();
 
         db.UserCreationRequests
             .replaceOne({ email: email }, { email: email, emailVerificationToken: emailVerificationToken }, { upsert: true })
             .then(dbModel => {
-                res.json(dbModel[0]),
-                    smtpTransport.sendMail({
-                        from: 'applications.nickramsay@gmail.com',
-                        to: email,
-                        subject: "Your Email Verification Code from Next.js Mongo Passport Template",
-                        text: "Your e-mail verification code is: " + emailVerificationToken
-                    }, (error, response) => {
-                        error ? console.log(error) : console.log(response);
-                        smtpTransport.close();
-                    })
+                // replaceOne returns a result object, not an array
+                res.json({ 
+                    success: true, 
+                    message: 'Verification token created',
+                    acknowledged: dbModel.acknowledged,
+                    upsertedId: dbModel.upsertedId
+                });
+                
+                // Send email
+                smtpTransport.sendMail({
+                    from: 'applications.nickramsay@gmail.com',
+                    to: email,
+                    subject: "Your Email Verification Code from Next.js Mongo Passport Template",
+                    text: "Your e-mail verification code is: " + emailVerificationToken
+                }, (error, response) => {
+                    if (error) {
+                        console.log('Email send error:', error);
+                    } else {
+                        console.log('Email sent successfully:', response);
+                    }
+                    smtpTransport.close();
+                });
             })
-            .catch(err => res.status(422).json(err));
+            .catch(err => {
+                console.error('Database error in setEmailVerficationToken:', err);
+                res.status(422).json({ message: 'Error creating verification token', error: err.message });
+            });
     },
     resetPasswordRequest: function (req, res) {
 

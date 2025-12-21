@@ -29,15 +29,26 @@ nextApp.prepare().then(() => {
 
       // Route API calls to Express
       if (pathname && pathname.startsWith('/api')) {
-        return expressApp(req, res);
+        // Let Express handle the request completely
+        return expressApp(req, res, (err) => {
+          if (err) {
+            console.error('Express error:', err);
+            if (!res.headersSent) {
+              res.statusCode = 500;
+              res.end('Internal server error');
+            }
+          }
+        });
       }
 
       // Route everything else to Next.js
       await handle(req, res, parsedUrl);
     } catch (err) {
       console.error('Error occurred handling', req.url, err);
-      res.statusCode = 500;
-      res.end('internal server error');
+      if (!res.headersSent) {
+        res.statusCode = 500;
+        res.end('internal server error');
+      }
     }
   });
 
