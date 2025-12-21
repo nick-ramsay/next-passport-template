@@ -12,7 +12,6 @@ function createExpressApp() {
   const PORT = process.env.PORT || 3001;
 
   const currentMongoUri = process.env.NODE_ENV === "production" ? process.env.mongo_uri : 'mongodb://localhost:27017/nextjs-mongo-passport';
-  console.log(currentMongoUri);
   //Need this for Heroku deployment of Express Session
   app.set('trust proxy', 1);
 
